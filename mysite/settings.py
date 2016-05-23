@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'polls.apps.PollsConfig',
+    'epc_admin.apps.EpcAdminConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,7 +57,7 @@ ROOT_URLCONF = 'mysite.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -82,9 +82,16 @@ DATABASES = {
         'NAME': 'django_mysite',
         'USER': 'root',
         'PASSWORD': '123456'
+    },
+    'bm': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'bm',
+        'USER': 'bm_test',
+        'PASSWORD': 'bm_test',
+        'HOST':'10.111.0.33'
     }
 }
-
+DATABASE_ROUTERS = ['db_router.MyRouter']
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
